@@ -9,10 +9,10 @@ import android.widget.ExpandableListAdapter;
 
 public class WrapperExpandableListAdapter extends BaseExpandableListAdapter {
 
-    private final ExpandableListAdapter mWrappedAdapter;
+    private final BaseExpandableListAdapter mWrappedAdapter;
     private final SparseBooleanArray mGroupExpandedMap = new SparseBooleanArray();
 
-    public WrapperExpandableListAdapter(ExpandableListAdapter adapter) {
+    public WrapperExpandableListAdapter(BaseExpandableListAdapter adapter) {
         mWrappedAdapter = adapter;
     }
 
@@ -34,6 +34,26 @@ public class WrapperExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public int getChildrenCount(int groupPosition) {
         return mWrappedAdapter.getChildrenCount(groupPosition);
+    }
+
+    @Override
+    public int getChildType(int groupPosition, int childPosition) {
+        return mWrappedAdapter.getChildType(groupPosition, childPosition);
+    }
+
+    @Override
+    public int getChildTypeCount() {
+        return mWrappedAdapter.getChildTypeCount();
+    }
+
+    @Override
+    public int getGroupType(int groupPosition) {
+        return mWrappedAdapter.getGroupType(groupPosition);
+    }
+
+    @Override
+    public int getGroupTypeCount() {
+        return mWrappedAdapter.getGroupTypeCount();
     }
 
     @Override
